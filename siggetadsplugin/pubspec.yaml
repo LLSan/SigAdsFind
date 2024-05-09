@@ -1,5 +1,5 @@
 name: siggetadsplugin
-description: "A new Flutter plugin project: Used by the Sig to obtain the data information base of the Adservice"
+description: "Used by the Sig to obtain the data information base of the Adservice"
 version: 1.0.0+1
 homepage: "https://github.com/LLSan/SigAdsFind.git"
 repository: "https://github.com/LLSan/SigAdsFind.git"
