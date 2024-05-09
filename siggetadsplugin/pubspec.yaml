@@ -2,7 +2,7 @@ name: siggetadsplugin
 description: "A new Flutter plugin project."
 version: 1.0.0+1
 homepage: ""
-repository: ""
+repository: "https://github.com/LLSan/SigAdsFind.git"
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
