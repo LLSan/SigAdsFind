@@ -1,13 +1,13 @@
 name: siggetadsplugin
 description: "Used by the Sig to obtain the data information base of the Adservice"
-version: 1.0.0+2
+version: 1.0.0+3
 homepage: "https://github.com/LLSan/SigAdsFind.git"
 repository: "https://github.com/LLSan/SigAdsFind.git"
 
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.3.0'
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.0.0'
 
 dependencies:
   flutter:
