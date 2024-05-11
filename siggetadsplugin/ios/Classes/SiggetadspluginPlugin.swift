@@ -14,7 +14,7 @@ public class SiggetadspluginPlugin: NSObject, FlutterPlugin {
     case "getPlatformVersion":
       result("iOS " + UIDevice.current.systemVersion)
     case "getAdKeyword":
-      //print("getAdKeyword - 来了")
+//      print("getAdKeyword - 来了")
       AdServiceQueryManagerTool.shared.startService { dict in
           DispatchQueue.main.async {
             result(dict)
@@ -39,6 +39,10 @@ class AdServiceQueryManagerTool : NSObject{
             completeBlock([:])
             return
         }
+        if(AdServiceQueryManagerTool.shared.repRequestCount >= 3) {
+            completeBlock([:])
+            return
+        }
         if AdServiceQueryManagerTool.shared.repRequestCount < 3 {
             requestDetails(abToken: abToken) { dict in
                 guard let attribution = dict["attribution"] as? Bool, attribution else {
@@ -52,12 +56,15 @@ class AdServiceQueryManagerTool : NSObject{
                 AdServiceQueryManagerTool.shared.repRequestCount = 0
                 completeBlock(dict)
             }
+        }else{
+            completeBlock([:])
         }
     }
 
     private func requestDetails(abToken: String, completeBlock: @escaping (_ dict: [String: Any]) -> Void) {
         let url = "https://api-adservices.apple.com/api/v1/"
         guard let requestURL = URL(string: url) else {
+             
             completeBlock([:])
             return
         }
@@ -81,6 +88,7 @@ class AdServiceQueryManagerTool : NSObject{
 
                 do {
                     guard let resultDict = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                         
                         completeBlock([:])
                         return
                     }
