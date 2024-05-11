@@ -14,7 +14,7 @@ public class SiggetadspluginPlugin: NSObject, FlutterPlugin {
     case "getPlatformVersion":
       result("iOS " + UIDevice.current.systemVersion)
     case "getAdKeyword":
-      print("getAdKeyword - 来了")
+      //print("getAdKeyword - 来了")
       AdServiceQueryManagerTool.shared.startService { dict in
           DispatchQueue.main.async {
             result(dict)
@@ -84,11 +84,11 @@ class AdServiceQueryManagerTool : NSObject{
                         completeBlock([:])
                         return
                     }
-                    /// 如果是模拟 Int 值，则不返回
-//                    if let campaignId = resultDict["campaignId"] as? Int, campaignId == 1234567890 {
-//                        completeBlock([:])
-//                        return
-//                    }
+                    // 如果是模拟 Int 值，则不返回
+                    if let campaignId = resultDict["campaignId"] as? Int, campaignId == 1234567890 {
+                        completeBlock([:])
+                        return
+                    }
                     completeBlock(resultDict)
                 } catch {
                     completeBlock([:])
